@@ -6,6 +6,8 @@ using System.Windows.Forms;
 
 namespace SourceMultiToolCSharp
 {
+	//TODO: I will deal with the gmod stuff later
+
     public partial class GarrysModConfigForm : Form
     {
         public GarrysModConfigForm()
@@ -17,7 +19,7 @@ namespace SourceMultiToolCSharp
         private void GarrysModConfigForm_Shown(object sender, EventArgs e)
         {
             // Populate our menu with the games they have
-            foreach (SourceGame game in MainMenuForm.listOfSourceGames)
+            foreach (SourceGame game in MainMenuForm.SourceGames)
             {
                 if (game.Installed)
                 {
@@ -64,7 +66,7 @@ namespace SourceMultiToolCSharp
                 foreach (string content in listbox_gmodContent.CheckedItems)
                 {
                     // TODO: This could be better optimized
-                    foreach (SourceGame game in MainMenuForm.listOfSourceGames)
+                    foreach (SourceGame game in MainMenuForm.SourceGames)
                     {
                         if(game.ProperName == content)
                         {

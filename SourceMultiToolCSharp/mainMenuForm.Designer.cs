@@ -89,7 +89,7 @@
             this.modelViewer_btn.TabIndex = 1;
             this.modelViewer_btn.Text = "Model Viewer";
             this.modelViewer_btn.UseVisualStyleBackColor = true;
-            this.modelViewer_btn.Click += new System.EventHandler(this.ButtonModelViewer_Click);
+            this.modelViewer_btn.Click += new System.EventHandler(this.ModelViewerButtonClick);
             // 
             // hammer_btn
             // 
@@ -100,7 +100,7 @@
             this.hammer_btn.TabIndex = 0;
             this.hammer_btn.Text = "Hammer Editor";
             this.hammer_btn.UseVisualStyleBackColor = true;
-            this.hammer_btn.Click += new System.EventHandler(this.buttonHammer_Click);
+            this.hammer_btn.Click += new System.EventHandler(this.HammerButtonClick);
             // 
             // settingsPage
             // 
@@ -130,7 +130,7 @@
             this.resetSettings_btn.TabIndex = 9;
             this.resetSettings_btn.Text = "Reset";
             this.resetSettings_btn.UseVisualStyleBackColor = true;
-            this.resetSettings_btn.Click += new System.EventHandler(this.resetSettings_btn_Click);
+            this.resetSettings_btn.Click += new System.EventHandler(this.ResetSettingsButtonClick);
             // 
             // label7
             // 
@@ -151,7 +151,7 @@
             this.button_gmodConfig.TabIndex = 7;
             this.button_gmodConfig.Text = "Garry\'s Mod Hammer Configuration";
             this.button_gmodConfig.UseVisualStyleBackColor = true;
-            this.button_gmodConfig.Click += new System.EventHandler(this.button_gmodConfig_Click);
+            this.button_gmodConfig.Click += new System.EventHandler(this.GmodConfigButtonClick);
             // 
             // label5
             // 
@@ -171,7 +171,7 @@
             this.buttonSave.TabIndex = 5;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
+            this.buttonSave.Click += new System.EventHandler(this.SaveButtonClick);
             // 
             // richTextBoxAdditionalSteamDirectory
             // 
@@ -199,7 +199,7 @@
             this.buttonBrowseSteamDir.TabIndex = 2;
             this.buttonBrowseSteamDir.Text = "Browse";
             this.buttonBrowseSteamDir.UseVisualStyleBackColor = true;
-            this.buttonBrowseSteamDir.Click += new System.EventHandler(this.ButtonBrowseSteamDir_Click);
+            this.buttonBrowseSteamDir.Click += new System.EventHandler(this.BrowseSteamDirButtonClick);
             // 
             // textSteamDirectory
             // 
@@ -291,7 +291,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainMenuForm";
             this.Text = "Source MultiTool";
-            this.Load += new System.EventHandler(this.MainMenuForm_Load);
+            this.Load += new System.EventHandler(this.MainMenuFormLoad);
             this.tabControl1.ResumeLayout(false);
             this.toolsPage.ResumeLayout(false);
             this.settingsPage.ResumeLayout(false);
