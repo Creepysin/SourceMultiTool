@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Gameloop.Vdf;
+using Gameloop.Vdf.JsonConverter;
 
 namespace SourceMultiToolCSharp
 {
@@ -204,29 +206,30 @@ namespace SourceMultiToolCSharp
 
         private void FindSteamDirectories()
         {
-			//TODO: Surely there is a library for reading .vdf files
-
-            if (File.Exists(Steam.MainSteamDir + "/steamapps/libraryfolders.vdf"))
+	        if (File.Exists(Steam.MainSteamDir + "/steamapps/libraryfolders.vdf"))
             {
-				//If the libraryfolders.vdf file exists, then read all the lines
-                string[] lines = File.ReadAllLines(Steam.MainSteamDir + "/steamapps/libraryfolders.vdf");
+	            dynamic library =
+		            VdfConvert.Deserialize(File.ReadAllText(Steam.MainSteamDir + "/steamapps/libraryfolders.vdf")).ToJson();
 
-                if (lines.Length != 5)
-                {
-                    //This means we have multiple directories
-                    Steam.AdditionalSteamDirectories.Clear();
+				bool addingDirectory = true;
+				int directoryCount = 1;
 
-                    for (int i = 4; i < lines.Length - 1; i++)    //start at line 5 and go to closing bracket
-                    {
-                        string temp = lines[i];
-                        int finalPosition = temp.LastIndexOf("\"", StringComparison.Ordinal);
-                        int startPosition = temp.LastIndexOf("\"", finalPosition - 1, StringComparison.Ordinal) + 1;    //Don't grab the same position or starting quote
+				Steam.AdditionalSteamDirectories.Clear();
 
-                        temp = temp.Substring(startPosition, (finalPosition - startPosition)).Replace("\\\\", "\\");
-                        Steam.AdditionalSteamDirectories.Add(temp);
-                    }
-                    richTextBoxAdditionalSteamDirectory.Lines = Steam.AdditionalSteamDirectories.ToArray();
-                }
+				while (addingDirectory)
+				{
+					if(library.Value[directoryCount.ToString()] != null)
+					{
+						Steam.AdditionalSteamDirectories.Add(library.Value[directoryCount.ToString()].ToString());
+						directoryCount++;
+					}
+					else
+					{
+						addingDirectory = false;
+					}
+				}
+
+				richTextBoxAdditionalSteamDirectory.Lines = Steam.AdditionalSteamDirectories.ToArray();
             }
 
             CheckGamesInstalled();
